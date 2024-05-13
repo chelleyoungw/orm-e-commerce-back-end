@@ -1,7 +1,11 @@
+// Loads environment variables from a .env file into process.env
 require('dotenv').config();
 
+// Imports Sequelize library
 const Sequelize = require('sequelize');
 
+// Checks if process.env.JAWSDB_URL is defined. If it is, it uses it as the database URL.
+// If JAWSDB_URL is not defined, it falls back using the database in .env
 const sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
@@ -12,4 +16,5 @@ const sequelize = process.env.JAWSDB_URL
       },
     });
 
+// Exports Sequelize instance making it available to other parts of the application
 module.exports = sequelize;
