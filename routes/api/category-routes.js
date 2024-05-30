@@ -1,27 +1,33 @@
+// The `/api/categories` endpoint
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// The `/api/categories` endpoint
-
-router.get('/', (req, res) => {
   // find all categories
+router.get('/', (req, res) => {
   // be sure to include its associated Products
   Category.findAll({
     include: {
       model: Product,
-      attributes: ['id', 'name', 'price', 'category_id', 'created_at', 'updated_at'],
-    }
+      attributes: [
+        'id',
+        'name',
+        'price',
+        'category_id',
+        'created_at',
+        'updated_at',
+      ],
+    },
   })
-    .then(dbCatData => {
-      if(!dbCatData) {
-        res.status(404).json({message: 'No categories found'});
+    .then((dbCatData) => {
+      if (!dbCatData) {
+        res.status(404).json({ message: 'No categories found' });
         return;
       }
       res.json(dbCatData);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
-      res.status(500).json(err)
+      res.status(500).json(err);
     });
 });
 
@@ -30,76 +36,83 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Products
   Category.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
     include: {
       model: Product,
-      attributes: ['id', 'name', 'price', 'category_id', 'created_at', 'updated_at'],
-    }
+      attributes: [
+        'id',
+        'name',
+        'price',
+        'category_id',
+        'created_at',
+        'updated_at',
+      ],
+    },
   })
-   .then(dbCatData => {
-      if(!dbCatData) {
-        res.status(404).json({message: 'No categories found'});
+    .then((dbCatData) => {
+      if (!dbCatData) {
+        res.status(404).json({ message: 'No categories found' });
         return;
       }
       res.json(dbCatData);
     })
-   .catch(err => {
+    .catch((err) => {
       console.log(err);
-      res.status(500).json(err)
+      res.status(500).json(err);
     });
 });
 
 router.post('/', (req, res) => {
   // create a new category
   Category.create({
-    category_name: req.body.category_name
+    category_name: req.body.category_name,
   })
-  .then(dbCatData => res.json(dbCatData))
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+    .then((dbCatData) => res.json(dbCatData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   Category.update(req.body, {
     where: {
-      id: req.params.id
-    }
+      id: req.params.id,
+    },
   })
-  .then(dbCatData => {
-    if(!dbCatData) {
-      res.status(404).json({message: 'No categorie found with this id.'});
-      return;
-    }
-    res.json(dbCatData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+    .then((dbCatData) => {
+      if (!dbCatData) {
+        res.status(404).json({ message: 'No categorie found with this id.' });
+        return;
+      }
+      res.json(dbCatData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
   Category.destroy({
     where: {
-      id: req.params.id
-    }
+      id: req.params.id,
+    },
   })
-    .then(dbCatData => {
-    if (!dbCatData){
-      res.status(404).json({message: 'No category found with this id.'});
-      return;
-    }
-    res.json(dbCatData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-});  
+    .then((dbCatData) => {
+      if (!dbCatData) {
+        res.status(404).json({ message: 'No category found with this id.' });
+        return;
+      }
+      res.json(dbCatData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
