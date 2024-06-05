@@ -15,10 +15,6 @@ Week-13 Challenge
 
  * [Authors and Acknowledgements](#authors-and-acknowledgements)
 
- * [Features](#features)
-
- * [Usage Information](#usage-information)
-
  * [Contributing](#contributing)
 
  * [Test Instructions](#test-instructions)
@@ -29,17 +25,12 @@ Week-13 Challenge
 
 ## Description
 
-This application can be utilized by the user to view and manage the departments, roles, and employees within their company and help streamline salaries, planning and organization. The database was created with MySQL. It implements the sequelize dependency allowing for the database to be interacted with through the use of JavaScript. 
-
-Future development for this application along with the addition of unit testing would consist of creating functionality allowing the user to view employees by manager, view employees by department, being able to delete departments, roles, and employees from the database, and allowing the view of the total utilized budget of a department—in other words, the combined salaries of all employees in that department.
+This application is to be used as the backend for an e-commerce website. You take a working Express.js API and configure it to use Sequelize to interact with a MySQL database. You can manage all products, tags, and categories for you business in a concise and organized manner. 
 
 ## Live Screen Recording of Application Functionality
 
-[05.05.2024 18_19.webm](https://github.com/chelleyoungw/employee-tracker/assets/153236313/3b695f38-2dbe-4b22-b4e3-54684821c742)
+(<iframe src="https://drive.google.com/file/d/1gTwoiQUMLh4eKgdcF_lkrZJUPoxRVds5/preview" width="640" height="480"></iframe>)
 
-## Screenshots
-
-![Screenshot1-week-13-challenge](./assets/images/)
 
 ## Technologies Used
 
@@ -49,10 +40,10 @@ Future development for this application along with the addition of unit testing 
 
 **Dependencies:**
 
-- Dotenv v16.4.5
-- Inquirer v8.2.4
-- MySQL2 v3.9.7
-- Sequelize v6.37.3
+- Dotenv v8.2.0
+- Express v4.17.1
+- MySQL2 v2.1.0
+- Sequelize v5.21.7
 
 ## Installation
 
@@ -63,7 +54,7 @@ Future development for this application along with the addition of unit testing 
 
 3. Using the terminal, install the following version of node.js.
 ```
-npm install -g node@20.11.1
+npm install -g node@2.0.3
 ```
 4. Once node.js v16 is installed, in the terminal, utilize the following command to initialize and create a package.json where project files will be stored.
 ```
@@ -79,6 +70,8 @@ npm install -g node@20.11.1
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js"
   }
 ```
 6. Once the dependencies are installed, you will create the database. Navigate to the directory db that contains the schema.sql file. Once there, open a MySQL shell to run the following command.
@@ -87,28 +80,18 @@ SOURCE schema.sql;
 ```
 7. Now that the database is created, you will need to seed the database. This will also create the model structure for the tables inside the database. Navigate to the root directory and open a terminal. Run the following commands to seed the database.
 ```
-   node./seeds/departments
-   node./seeds/roes
-   node./seeds/employees
-   ```
-8. Now that the database is seeded, to run the application, navigate to the root directory index.js. Open a terminal and invoke the application with the following command.
+   node seed/index.js
 ```
-   npm start
+8. Now that the database is seeded, to run the application, navigate to the root directory server.js. Open a terminal and invoke the application with the following command.
 ```
+   node server.js
+```
+9. You can open an API development platform, like Insomnia (used for this demonstration video) to view and interact with the database.
 
 ## Authors and Acknowledgements
 
 - Chelle Wood is the author.
 - Occasionally used edX bootcamp Xpert Learning Assistant and ChatGPT. 
-- Referenced github account https://github.com/rmessett15/SQL-Employee-Tracker.git
-
-## Features
-
-Features of this application include the users ability to see, manage the departments, roles, and employees from within a CLI. It uses sequelize to interact with the database through JavaScript giving the user a dymanic experience.
-
-## Usage Information
-
-Once the application is started, it is very intuitive for the user. All they need to do is arrow up and down through the database options on what actions they want to take and hit enter. The user then needs to follow the commands to adjust or view or edit the database.
 
 ## Contributing
 
